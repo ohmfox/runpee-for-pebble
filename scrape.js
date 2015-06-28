@@ -3,6 +3,7 @@ var request = require("request"),
   cheerio = require("cheerio"),
   Firebase = require("firebase"),
   baseUrl = "http://m.runpee.com/",
+  fs = require("fs"),
   movies = [],
   DEBUG = true;
 
@@ -85,10 +86,14 @@ function start() {
   });
 }
 var CronJob = require('cron').CronJob;
+console.log("Cron starting!");
 var job = new CronJob('00 01 12 * * 1-5', function() {
   start();
 }, function () {
+  var now = new Date();
+  var file = path.join(__dirname, 'logs', "cron_running.log");
+  fs.writeFileSync(file, "Ran cron job at "+now.toISOString());
 },
 true, 
 'America/Los_Angeles'
-);  
+                     );  
