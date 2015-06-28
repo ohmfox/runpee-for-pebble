@@ -14,6 +14,7 @@
     "forever": "latest"
   },
   "scripts": {
-    "start": "forever start scrape.js"
+    "start": "forever start server.js",
+    "stop": "forever stop server.js"
   }
 }
